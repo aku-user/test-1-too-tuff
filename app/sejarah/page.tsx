@@ -4,7 +4,7 @@ export default function Sejarah() {
   return (
     <main className="sejarah-container">
       
-      <h1 className="judul-sejarah">Sejarah Perjuangan Indonesia</h1>
+      <h1 className="judul-sejarah">Sejarah Sedulur Sikep</h1>
 
     
       <p className="hytam">
