@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ffffff;
+    --foreground: #ededed; 
+  }
+}
+
+@layer components{
+  /* global type shi */
+  .seperator{
+    height: 100vh;
+    background-color: #f7374f;
+  }
+
+  /* ------ */
+  /* layout */
+  /* ------ */
+  .logo{
+    font-family: Courier;
+    font-weight: 800;
+    font-size: 50px;
+    color: #f7374f;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+    margin-right: auto;
+  }
+  .wrapper{
+    width: 100%;
+    margin: 0;
+    display: flex;
+    line-height: 70px;
+    /* top: 100px; */
+    background:#F4F8D3 ;
+    z-index: 9999;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    justify-content: flex-end;
+  }
+  .shit{
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+    
+  }
+  .shit:hover{
+    text-decoration: none;
+    color: #969696;
+  }
+  .nig{
+    display: flex;
+    align-self: flex-end;
+    gap: 10px;
+    padding: 0px 10px 0px 10px;
+    align-items: center;
+  }
+  .comunity_button{
+    width: 17%;
+    position: fixed;
+    font-family: 'comic sans ms';
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #cecece;
+    border-radius: 20px;
+    bottom: 5%;
+    right: 2%;
+    z-index: 2;
+    color: #000;
+  }
+  .comunity_button:hover{
+    background-color: #dddd;
+    border-radius: 20px;
+  }
+  .com_ul{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: #000;
+  }
+
+  /* .foot{
+    width: 100%;
+   background-color: red;
+   color: white;
+   bottom: 0%;
+  }
+  .footer{
+   width: 100%;
+   background-color: black;
+   display: flex;
+   line-height: 70px;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-end;
+  } */
+
+  /* ---- */
+  /* home */
+  /* ---- */
+  .secigger{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+  .judulContain{
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    /* margin-top: 135px; */
+    /* margin: 0%; */
+  }
+  .judulHome{
+    z-index: 10;
+    text-align: center;
+    font-weight: bolder;
+    margin: 5px;
+    color: #ededed;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .kurunigger{
+    margin-top: -10px;
+  }
+  .clickigger{
+    z-index: 10;
+    color: #000000;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ededed;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    width: auto;
+    height: auto;
+  }
+  
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Semjarah */
+.sejarah-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.7;
+}
+
+.judul-sejarah {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #b22222;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hytam {
+  font-size: 1.1rem;
+  color: #333;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.gambar-tengah {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.foto-besar {
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+
+.nagger{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.aga {
+  flex: 1;
+  min-width: 280px;
+}
+
+.foto-tokoh {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+/* about_us */
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+/* nilai */
+
+.list {
+  padding-left: 20px;
+  margin-bottom: 40px;
+  list-style-type: pointer;
+  
+}
+
+.list-li {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #222;
+}
+.subjud {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 25px 0 15px 0;
+  color: #444;
+}
