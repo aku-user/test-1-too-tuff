@@ -2,9 +2,17 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
 
-const API_URL = "/api/quiz"; // pakai proxy localhost
+const API_URL = "/api/quiz"; // Pakai proxy Next.js
 
 export default function SedulurGen() {
   const [name, setName] = useState("");
@@ -16,12 +24,12 @@ export default function SedulurGen() {
 
   useEffect(() => {
     fetch(API_URL)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setQuestions(data.map((q: any) => q.soal));
         setAnswers(new Array(data.length).fill(""));
       })
-      .catch(err => console.error("Fetch error:", err));
+      .catch((err) => console.error("Fetch error:", err));
   }, []);
 
   const handleAnswer = (answer: string) => {
@@ -37,7 +45,7 @@ export default function SedulurGen() {
         question: questions[qIndex],
         answer,
       }),
-    }).catch(err => console.error("Post error:", err));
+    }).catch((err) => console.error("Post error:", err));
   };
 
   const characterResult = useMemo(() => {
@@ -47,7 +55,9 @@ export default function SedulurGen() {
       "Kurang setuju": 0,
       "Tidak setuju": 0,
     };
-    answers.forEach(a => { if (counts[a] !== undefined) counts[a]++; });
+    answers.forEach((a) => {
+      if (counts[a] !== undefined) counts[a]++;
+    });
 
     let dominant = "Sangat setuju";
     let max = 0;
@@ -59,21 +69,31 @@ export default function SedulurGen() {
     }
 
     switch (dominant) {
-      case "Sangat setuju": return { name: "Karakter Tegas", img: "/characters/karakter1.png" };
-      case "Setuju": return { name: "Karakter Ramah", img: "/characters/karakter2.png" };
-      case "Kurang setuju": return { name: "Karakter Santai", img: "/characters/karakter3.png" };
-      case "Tidak setuju": return { name: "Karakter Sabar", img: "/characters/karakter4.png" };
-      default: return { name: "Netral", img: "/characters/default.png" };
+      case "Sangat setuju":
+        return { name: "Karakter Tegas", img: "/characters/karakter1.png" };
+      case "Setuju":
+        return { name: "Karakter Ramah", img: "/characters/karakter2.png" };
+      case "Kurang setuju":
+        return { name: "Karakter Santai", img: "/characters/karakter3.png" };
+      case "Tidak setuju":
+        return { name: "Karakter Sabar", img: "/characters/karakter4.png" };
+      default:
+        return { name: "Netral", img: "/characters/default.png" };
     }
   }, [answers]);
 
   const chartData = useMemo(
-    () => ["Sangat setuju", "Setuju", "Kurang setuju", "Tidak setuju"].map(k => ({
-      name: k,
-      total: answers.filter(a => a === k).length
-    })),
+    () =>
+      ["Sangat setuju", "Setuju", "Kurang setuju", "Tidak setuju"].map(
+        (k) => ({
+          name: k,
+          total: answers.filter((a) => a === k).length,
+        })
+      ),
     [answers]
   );
+
+  const colors = ["#f97316", "#3b82f6", "#10b981", "#f43f5e"];
 
   const restartQuiz = () => {
     setName("");
@@ -84,6 +104,7 @@ export default function SedulurGen() {
     setQuestions([]);
   };
 
+  // ---------- Halaman Login ----------
   if (!started) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white text-black p-4">
@@ -91,7 +112,7 @@ export default function SedulurGen() {
         <input
           className="p-2 rounded bg-gray-200 text-black placeholder-gray-500 w-64"
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
           placeholder="Nama..."
         />
         <button
@@ -104,6 +125,7 @@ export default function SedulurGen() {
     );
   }
 
+  // ---------- Halaman Quiz ----------
   if (!finished) {
     return (
       <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center p-6">
@@ -111,31 +133,33 @@ export default function SedulurGen() {
           <>
             <h2 className="text-lg mb-4">{questions[qIndex]}</h2>
             <div className="grid grid-cols-2 gap-4 mb-6">
-              {["Sangat setuju", "Setuju", "Kurang setuju", "Tidak setuju"].map(opt => (
-                <button
-                  key={opt}
-                  onClick={() => handleAnswer(opt)}
-                  className={`px-4 py-2 rounded border ${
-                    answers[qIndex] === opt
-                      ? "bg-blue-600 border-blue-400 text-white"
-                      : "bg-gray-300 border-gray-400 text-black"
-                  }`}
-                >
-                  {opt}
-                </button>
-              ))}
+              {["Sangat setuju", "Setuju", "Kurang setuju", "Tidak setuju"].map(
+                (opt) => (
+                  <button
+                    key={opt}
+                    onClick={() => handleAnswer(opt)}
+                    className={`px-4 py-2 rounded border ${
+                      answers[qIndex] === opt
+                        ? "bg-blue-600 border-blue-400 text-white"
+                        : "bg-gray-300 border-gray-400 text-black"
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                )
+              )}
             </div>
             <div className="flex gap-4">
               <button
                 disabled={qIndex === 0}
-                onClick={() => setQIndex(i => i - 1)}
+                onClick={() => setQIndex((i) => i - 1)}
                 className="px-4 py-2 bg-gray-400 rounded disabled:opacity-50"
               >
                 Sebelumnya
               </button>
               {qIndex < questions.length - 1 ? (
                 <button
-                  onClick={() => setQIndex(i => i + 1)}
+                  onClick={() => setQIndex((i) => i + 1)}
                   className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                   Selanjutnya
@@ -157,6 +181,7 @@ export default function SedulurGen() {
     );
   }
 
+  // ---------- Halaman Hasil ----------
   return (
     <div className="min-h-screen bg-white text-black p-6 flex flex-col items-center">
       <h2 className="text-xl mb-4">Hasil Quiz untuk {name}</h2>
@@ -170,11 +195,26 @@ export default function SedulurGen() {
       />
       <h3 className="text-lg mb-2">Grafik Jawaban</h3>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={chartData}>
-          <XAxis dataKey="name" stroke="#000" />
-          <YAxis stroke="#000" />
-          <Tooltip />
-          <Bar dataKey="total" fill="#3b82f6" />
+        <BarChart
+          data={chartData}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          style={{ backgroundColor: "#f3f4f6", borderRadius: "8px" }}
+        >
+          <XAxis dataKey="name" stroke="#111827" />
+          <YAxis stroke="#111827" allowDecimals={false} />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#111827",
+              color: "#ffffff",
+              borderRadius: "8px",
+            }}
+            formatter={(value: number, name: string) => [`${value} jawaban`, name]}
+          />
+          <Bar dataKey="total">
+            {chartData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index]} />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
 
