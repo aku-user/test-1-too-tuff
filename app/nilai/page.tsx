@@ -1,24 +1,28 @@
+import Image from "next/image";
+
 export default function NilaiPage() {
     return (
       <main className="sejarah-container">
         
-        <h1 className="judul-sejarah">Sejarah Perjuangan Indonesia</h1>
+        <h1 className="judul-sejarah">Nilai-Nilai Sedulur Sikep</h1>
+
+          <div className="gambar-tengah">
+        <Image
+          src="/pitutur1.jpg"    
+          alt="Samin Surosentiko"
+          width={400}
+          height={350}
+          className="foto-besar"
+        />
+      </div>
   
       
         <p className="hytam">
         Sedulur Sikep punya ajaran hidup sederhana namun penuh makna. Nilai-nilai ini bisa jadi panduan karakter buat Generasi Z 
         agar tetap kuat di tengah derasnya arus digital:
         </p>
-{/*   
-        <div>
-          <Image
-            src="/SaminHome.jpg"    
-            alt="Samin Surosentiko"
-            width={600}
-            height={400}
-            className="foto-besar"
-          />
-        </div> */}
+  
+      
   
         
 
@@ -50,10 +54,31 @@ export default function NilaiPage() {
         Selain pitutur luhur, Sedulur Sikep juga punya tiga prinsip utama:
         </p>
      <ul className="list">
+      <div className="gambar-kanan">
+          <Image
+            src="/pitutur2.jpg"    
+            alt="Samin Surosentiko"
+            width={300}
+            height={350}
+            className="foto-tokoh"
+          />
+        </div>
         <li className="list-li"> Partikel (pikiran): berpikir sebelum bertindak, jangan gegabah.</li>
         <li className="list-li">Pangucap (ucapan): berbicara dengan sopan, menjaga kata-kata.</li>
         <li className="list-li">Lakonono (perilaku): bertindak sesuai nilai kebaikan.</li>
+        {/* <div className="gambar-kanan">
+          <Image
+            src="/pitutur2.jpg"    
+            alt="Samin Surosentiko"
+            width={100}
+            height={150}
+            className="foto-tokoh"
+          />
+        </div> */}
       </ul>
+
+  
+
 <p className="hytam">Relevansi Gen Z: Pikir dulu sebelum posting, gunakan kata yang sehat di ruang digital, dan wujudkan kebaikan dalam aksi nyata.</p>
        
       </main>

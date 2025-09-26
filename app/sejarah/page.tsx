@@ -16,8 +16,8 @@ export default function Sejarah() {
         <Image
           src="/SaminHome.jpg"    
           alt="Samin Surosentiko"
-          width={600}
-          height={400}
+          width={500}
+          height={350}
           className="foto-besar"
         />
       </div>
@@ -42,13 +42,15 @@ export default function Sejarah() {
           kini sebagai Sedulur Sikep  simbol perlawanan damai rakyat Jawa terhadap kolonialisme.
           </p>
         </div>
-        {/* <Image
-          src=""
-          alt=""
-          width={500}
+        <div className="gambar-tengah">
+        <Image
+          src="/samin_depan.jpg"
+          alt="samin"
+          width={300}
           height={350}
           className="foto-tokoh"
-        /> */}
+        />
+      </div>
       </div>
     </main>
   );
