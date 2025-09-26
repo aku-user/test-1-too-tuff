@@ -4,8 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-// Ganti dengan link deploy Apps Script terbaru
-const API_URL = "https://script.google.com/macros/s/AKfycbwFmagvk1VYqWlChPlFwEtJG1qE9baLR2bnuPcAVRTxoTo0BAalb0T_KMzX4QfLi4SlHg/exec";
+const API_URL = "/api/quiz"; // pakai proxy localhost
 
 export default function SedulurGen() {
   const [name, setName] = useState("");
