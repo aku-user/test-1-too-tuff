@@ -1,6 +1,25 @@
 @import "tailwindcss";
 
 
+/* Reset bawaan browser
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+/* Pastikan wrapper navbar full lebar */
+.wrapper {
+  width: 100%;
+} 
+
 
 :root {
   --background: #ffffff;
@@ -96,53 +115,71 @@
   /* ---- */
   /* home */
   /* ---- */
-  .secigger{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-  }
-  .judulContain{
-    z-index: 9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-    height: auto;
-    /* margin-top: 135px; */
-    /* margin: 0%; */
-  }
-  .judulHome{
-    z-index: 10;
-    text-align: center;
-    font-weight: bolder;
-    margin: 5px;
-    color: #ededed;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .kurunigger{
-    margin-top: -10px;
-  }
-  .clickigger{
-    z-index: 10;
-    color: #000000;
-    font-weight: bolder;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ededed;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-    width: auto;
-    height: auto;
-  }
-  
+ /* Hero Section */
+.secigger {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full layar */
+  overflow: hidden;
 }
+
+.judulContain {
+  position: absolute;
+  inset: 0; /* full cover */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  z-index: 10;
+}
+
+.judulHome {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  margin: 0.5rem 0;
+}
+
+.kurunigger {
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+.clickigger {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #f5f5dc; /* krem */
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.clickigger:hover {
+  background-color: #e0dfc4;
+  transform: scale(1.05);
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+  .judulHome.text-7xl {
+    font-size: 2.5rem; /* lebih kecil di hp */
+  }
+
+  .judulHome.text-3xl {
+    font-size: 1.2rem;
+  }
+
+  .clickigger {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
 
 body {
   background: var(--background);
@@ -273,4 +310,5 @@ body {
   margin-left: auto;
   margin-right: auto;
   /* align-self: center; */
+}
 }

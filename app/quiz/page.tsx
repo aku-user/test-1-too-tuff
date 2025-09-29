@@ -62,8 +62,8 @@ export default function QuizPage() {
 
     switch (dominant) {
       case "Sangat setuju": return { name: "Karakter Tidak Ramah", img: "/semdih.png" };
-      case "Setuju": return { name: "Karakter baik", img: "/sedihpre.jpg" };
-      case "Kurang setuju": return { name: "Karakter lebih baik", img: "/senang.jpg" };
+      case "Setuju": return { name: "Karakter Baik", img: "/sedihpre.jpg" };
+      case "Kurang setuju": return { name: "Karakter Lebih Baik", img: "/senang.jpg" };
       case "Tidak setuju": return { name: "Karakter Teladan", img: "/sikmarizz.jpg" };
       default: return { name: "Netral", img: "/senang.jpg" };
     }
@@ -86,11 +86,19 @@ export default function QuizPage() {
     setQuestions([]);
   };
 
-  if (!started) {
-    return (
-      <div className="quiz-container">
+  return (
+    <div className="quiz-container">
+      {/* Header Sticky */}
+      <div className="quiz-header">
+        <h1 className="text-2xl sm:text-3xl font-bold judul-sejarah">
+          Quiz Sedulur Gen
+        </h1>
+      </div>
+
+      {/* Tahap Masukkan Nama */}
+      {!started && (
         <div className="quiz-card">
-          <h1 className="text-2xl mb-4">Masukkan Nama Anda</h1>
+          <h2 className="text-xl mb-4">Masukkan Nama Anda</h2>
           <input
             className="p-2 rounded bg-gray-100 text-black placeholder-gray-500 w-full"
             value={name}
@@ -104,125 +112,123 @@ export default function QuizPage() {
             Mulai Quiz
           </button>
         </div>
-      </div>
-    );
-  }
+      )}
 
-  if (!finished) {
-    return (
-      <div className="quiz-container">
-        <button
-          onClick={() => setShowModal(true)}
-          className="absolute top-4 right-4 px-3 py-1 bg-gray-800 text-white rounded hover:bg-gray-900"
-        >
-          Info
-        </button>
+      {/* Tahap Pertanyaan */}
+      {started && !finished && (
+        <>
+          <button
+            onClick={() => setShowModal(true)}
+            className="absolute top-4 right-4 px-3 py-1 bg-gray-800 text-white rounded hover:bg-gray-900"
+          >
+            Info
+          </button>
 
-        {questions.length > 0 && (
-          <div className="quiz-card">
-            <h2 className="text-lg mb-4">{questions[qIndex]}</h2>
-            <div className="quiz-options">
-              {["Sangat setuju", "Setuju", "Kurang setuju", "Tidak setuju"].map(opt => (
+          {questions.length > 0 && (
+            <div className="quiz-card">
+              <h2 className="text-lg mb-4">{questions[qIndex]}</h2>
+              <div className="quiz-options">
+                {["Sangat setuju", "Setuju", "Kurang setuju", "Tidak setuju"].map(opt => (
+                  <button
+                    key={opt}
+                    onClick={() => handleAnswer(opt)}
+                    className={`quiz-button ${answers[qIndex] === opt ? "quiz-button-primary" : "quiz-button-secondary"}`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex justify-between">
                 <button
-                  key={opt}
-                  onClick={() => handleAnswer(opt)}
-                  className={`quiz-button ${answers[qIndex] === opt ? "quiz-button-primary" : "quiz-button-secondary"}`}
+                  disabled={qIndex === 0}
+                  onClick={() => setQIndex(i => i - 1)}
+                  className="quiz-button quiz-button-secondary"
                 >
-                  {opt}
+                  Sebelumnya
                 </button>
-              ))}
+
+                {qIndex < questions.length - 1 ? (
+                  <button
+                    onClick={() => {
+                      if (!answers[qIndex]) {
+                        alert("Kamu belum memilih jawaban! Silakan pilih jawaban terlebih dahulu.");
+                        return;
+                      }
+                      setQIndex(i => i + 1);
+                    }}
+                    className="quiz-button quiz-button-primary"
+                  >
+                    Selanjutnya
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      if (!answers[qIndex]) {
+                        alert("Kamu belum memilih jawaban! Silakan pilih jawaban terlebih dahulu.");
+                        return;
+                      }
+                      setFinished(true);
+                    }}
+                    className="quiz-button quiz-button-primary"
+                  >
+                    Selesai
+                  </button>
+                )}
+              </div>
             </div>
+          )}
 
-            <div className="flex justify-between">
-              <button
-                disabled={qIndex === 0}
-                onClick={() => setQIndex(i => i - 1)}
-                className="quiz-button quiz-button-secondary"
-              >
-                Sebelumnya
-              </button>
-
-              {qIndex < questions.length - 1 ? (
+          {/* Info Modal */}
+          {showModal && (
+            <div className="quiz-modal-overlay">
+              <div className="quiz-modal-card">
+                <h3 className="text-lg font-bold mb-2">Petunjuk Quiz</h3>
+                <p className="mb-4">
+                  Jawablah setiap soal dengan jujur. Gunakan tombol "Selanjutnya" untuk maju dan "Sebelumnya" untuk kembali.
+                </p>
                 <button
-                  onClick={() => {
-                    // ✅ Peringatan jika belum memilih jawaban
-                    if (!answers[qIndex]) {
-                      alert("Kamu belum memilih jawaban! Silakan pilih jawaban terlebih dahulu.");
-                      return;
-                    }
-                    setQIndex(i => i + 1);
-                  }}
+                  onClick={() => setShowModal(false)}
                   className="quiz-button quiz-button-primary"
                 >
-                  Selanjutnya
+                  Tutup
                 </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    if (!answers[qIndex]) {
-                      alert("Kamu belum memilih jawaban! Silakan pilih jawaban terlebih dahulu.");
-                      return;
-                    }
-                    setFinished(true);
-                  }}
-                  className="quiz-button quiz-button-primary"
-                >
-                  Selesai
-                </button>
-              )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </>
+      )}
 
-        {/* --- Info Modal --- */}
-        {showModal && (
-          <div className="quiz-modal-overlay">
-            <div className="quiz-modal-card">
-              <h3 className="text-lg font-bold mb-2">Petunjuk Quiz</h3>
-              <p className="mb-4">Jawablah setiap soal dengan jujur. Gunakan tombol "Selanjutnya" untuk maju dan "Sebelumnya" untuk kembali.</p>
-              <button
-                onClick={() => setShowModal(false)}
-                className="quiz-button quiz-button-primary"
-              >
-                Tutup
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
+      {/* Tahap Hasil */}
+      {finished && (
+        <div className="quiz-card">
+          <h2 className="text-xl mb-4 text-center">Hasil Quiz untuk {name}</h2>
+          <p className="mb-2 font-bold text-center">{characterResult.name}</p>
+          <Image
+            src={characterResult.img}
+            alt="Karakter"
+            width={200}
+            height={200}
+            className="mx-auto mb-4"
+          />
+          <h3 className="text-lg mb-2 text-center">Grafik Jawaban</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={chartData}>
+              <XAxis dataKey="name" stroke="#000" />
+              <YAxis stroke="#000" />
+              <Tooltip />
+              <Bar dataKey="total" fill="#3b82f6" />
+            </BarChart>
+          </ResponsiveContainer>
 
-  // --- Hasil Quiz ---
-  return (
-    <div className="quiz-container">
-      <div className="quiz-card">
-        <h2 className="text-xl mb-4 text-center">Hasil Quiz untuk {name}</h2>
-        <p className="mb-2 font-bold text-center">{characterResult.name}</p>
-        <Image
-          src={characterResult.img}
-          alt="Karakter"
-          width={200}
-          height={200}
-          className="mx-auto mb-4"
-        />
-        <h3 className="text-lg mb-2 text-center">Grafik Jawaban</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={chartData}>
-            <XAxis dataKey="name" stroke="#000" />
-            <YAxis stroke="#000" />
-            <Tooltip />
-            <Bar dataKey="total" fill="#3b82f6" />
-          </BarChart>
-        </ResponsiveContainer>
-
-        <button
-          onClick={restartQuiz}
-          className="quiz-button quiz-button-primary mt-6 w-full"
-        >
-          Restart Quiz
-        </button>
-      </div>
+          <button
+            onClick={restartQuiz}
+            className="quiz-button quiz-button-primary mt-6 w-full"
+          >
+            Restart Quiz
+          </button>
+        </div>
+      )}
     </div>
   );
 }
