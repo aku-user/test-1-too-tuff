@@ -4,10 +4,10 @@ const nextConfig = {
     return [
       {
         source: '/api/quiz',
-        destination: 'https://script.google.com/macros/s/AKfycbwjV-6K1hlCwnMsMwHuJuOcP0rE-egz_336hdLdIeHPeyGD4zAywkwu_vcOF6WENsZdeQ/exec',
+        destination: 'https://script.google.com/macros/s/AKfycbzfDFYAD073Vl6mKZE2I_18uzvf224LDl8T_zhp-AFdeEHa-5G974uLzjBS8uEdG01Uwg/exec',
       },
-    ]
+    ];
   },
-}
+};
 
 module.exports = nextConfig;
