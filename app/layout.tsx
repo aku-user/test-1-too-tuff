@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./navbar"; // pastikan file ini ada
-import Footer from "./footer"; // kalau footernya kamu pisah
+import Navbar from "./navbar"; 
+import Footer from "./footer"; 
+import WhatsAppPopup from "./WhatsAppPopup";
 
 export const metadata: Metadata = {
   title: "WE THE BEST DEVELOPER",
@@ -19,6 +20,9 @@ export default function RootLayout({
         <Navbar />
         <main className="m-0 p-0">{children}</main>
         <Footer />
+
+        {/* ✅ taruh popup di dalam body */}
+        <WhatsAppPopup />
       </body>
     </html>
   );
