@@ -61,11 +61,11 @@ export default function QuizPage() {
     }
 
     switch (dominant) {
-      case "Sangat setuju": return { name: "Karakter Tidak Ramah", img: "/semdih.png" };
-      case "Setuju": return { name: "Karakter Baik", img: "/sedihpre.jpg" };
-      case "Kurang setuju": return { name: "Karakter Lebih Baik", img: "/senang.jpg" };
-      case "Tidak setuju": return { name: "Karakter Teladan", img: "/sikmarizz.jpg" };
-      default: return { name: "Netral", img: "/senang.jpg" };
+      case "Sangat setuju": return { name: "Karakter Tidak Ramah", img: "/c4.png" };
+      case "Setuju": return { name: "Karakter kurang Ramah", img: "/c3.png" };
+      case "Kurang setuju": return { name: "Karakter Baik", img: "/c5.png" };
+      case "Tidak setuju": return { name: "Karakter Teladan", img: "/c2.png" };
+      default: return { name: "Netral", img: "/c1.png" };
     }
   }, [answers]);
 
