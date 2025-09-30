@@ -5,8 +5,8 @@ import Footer from "./footer";
 import WhatsAppPopup from "./WhatsAppPopup";
 
 export const metadata: Metadata = {
-  title: "WE THE BEST DEVELOPER",
-  description: "67",
+  title: "Sedulur Gen",
+  description: "Sedulur Gen",
 };
 
 export default function RootLayout({
