@@ -16,6 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Google Site Verification */}
+        <meta
+          name="google-site-verification"
+          content="PjOtfFTTAPlffeNFi6YrSEP5DK49wwTBQfX8NQp4wH0"
+        />
+      </head>
       <body className="m-0 p-0">
         <Navbar />
         <main className="m-0 p-0">{children}</main>
