@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sedulurgen.vercel.app/sitemap.xml
